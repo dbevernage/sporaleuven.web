@@ -1,0 +1,24 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const teams = (await getCollection('teams')).sort((a, b) => a.data.category.localeCompare(b.data.category));
+---
+
+<BaseLayout title="Teams">
+  <h1 class="text-3xl font-bold text-slate-900">Onze teams</h1>
+
+  <div class="mt-6 grid gap-6 sm:grid-cols-2">
+    {teams.map((team) => (
+      <div class="rounded-lg border border-slate-200 bg-white p-5 shadow-sm">
+        <p class="text-xs font-semibold uppercase tracking-wide text-orange-600">{team.data.category}</p>
+        <h2 class="mt-1 text-lg font-semibold text-slate-900">{team.data.name}</h2>
+        <p class="text-sm text-slate-600">Competitie: {team.data.competitie}</p>
+        <p class="text-sm text-slate-600">Wedstrijden: {team.data.wedstrijden}</p>
+        <p class="text-sm text-slate-600">Training: {team.data.trainingMoment}</p>
+        <p class="text-sm text-slate-600">Zaal: {team.data.zaal}</p>
+        <p class="mt-2 text-sm text-slate-600">Verantwoordelijke: {team.data.verantwoordelijke}</p>
+      </div>
+    ))}
+  </div>
+</BaseLayout>

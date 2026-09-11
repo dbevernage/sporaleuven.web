@@ -1,0 +1,470 @@
+[
+  {
+    "id": "g1",
+    "team": "dames-2",
+    "opponent": "EUREKA (dames)",
+    "date": "2026-09-20",
+    "time": "20:15",
+    "location": "Sporthal Rijschool Leuven",
+    "homeOrAway": "thuis"
+  },
+  {
+    "id": "g2",
+    "team": "dames-2",
+    "opponent": "HZ 93 Hofstade-Zemst A",
+    "date": "2026-10-18",
+    "time": "20:15",
+    "location": "Sporthal Rijschool Leuven",
+    "homeOrAway": "thuis"
+  },
+  {
+    "id": "g3",
+    "team": "dames-2",
+    "opponent": "SVK DAMES VOLLEYBAL",
+    "date": "2026-11-15",
+    "time": "20:15",
+    "location": "Sporthal Rijschool Leuven",
+    "homeOrAway": "thuis"
+  },
+  {
+    "id": "g4",
+    "team": "dames-2",
+    "opponent": "Attilladies 2",
+    "date": "2026-11-29",
+    "time": "20:15",
+    "location": "Sporthal Rijschool Leuven",
+    "homeOrAway": "thuis"
+  },
+  {
+    "id": "g5",
+    "team": "dames-2",
+    "opponent": "MISSTOUCH GAVO",
+    "date": "2026-12-13",
+    "time": "20:15",
+    "location": "Sporthal Rijschool Leuven",
+    "homeOrAway": "thuis"
+  },
+  {
+    "id": "g6",
+    "team": "dames-2",
+    "opponent": "MOM*SMASH",
+    "date": "2027-01-24",
+    "time": "20:15",
+    "location": "Sporthal Rijschool Leuven",
+    "homeOrAway": "thuis"
+  },
+  {
+    "id": "g7",
+    "team": "dames-2",
+    "opponent": "Inonzentijd",
+    "date": "2027-02-07",
+    "time": "20:15",
+    "location": "Sporthal Rijschool Leuven",
+    "homeOrAway": "thuis"
+  },
+  {
+    "id": "g8",
+    "team": "dames-2",
+    "opponent": "DAVOKO 2",
+    "date": "2027-03-07",
+    "time": "20:15",
+    "location": "Sporthal Rijschool Leuven",
+    "homeOrAway": "thuis"
+  },
+  {
+    "id": "g9",
+    "team": "dames-2",
+    "opponent": "MOM*SMASH",
+    "date": "2026-09-11",
+    "time": "20:30",
+    "location": "Sporthal PIVO",
+    "homeOrAway": "uit"
+  },
+  {
+    "id": "g10",
+    "team": "dames-2",
+    "opponent": "Inonzentijd",
+    "date": "2026-09-28",
+    "time": "20:00",
+    "location": "Gemeenteschool 'De Fonkel'",
+    "homeOrAway": "uit"
+  },
+  {
+    "id": "g11",
+    "team": "dames-2",
+    "opponent": "MISSTOUCH GAVO",
+    "date": "2026-10-21",
+    "time": "19:45",
+    "location": "Sporthal Richard Bauthier",
+    "homeOrAway": "uit"
+  },
+  {
+    "id": "g12",
+    "team": "dames-2",
+    "opponent": "HZ 93 Hofstade-Zemst A",
+    "date": "2027-01-15",
+    "time": "20:15",
+    "location": "Sporthal Den turfput",
+    "homeOrAway": "uit"
+  },
+  {
+    "id": "g13",
+    "team": "dames-2",
+    "opponent": "SVK DAMES VOLLEYBAL",
+    "date": "2027-01-29",
+    "time": "20:30",
+    "location": "Ontmoetingcentrum St Joris Weert",
+    "homeOrAway": "uit"
+  },
+  {
+    "id": "g14",
+    "team": "dames-2",
+    "opponent": "DAVOKO 2",
+    "date": "2027-02-21",
+    "time": "19:45",
+    "location": "Sporthal Erps-Kwerps",
+    "homeOrAway": "uit"
+  },
+  {
+    "id": "g15",
+    "team": "dames-2",
+    "opponent": "EUREKA (dames)",
+    "date": "2027-03-17",
+    "time": "20:30",
+    "location": "Maelbeek Tribun",
+    "homeOrAway": "uit"
+  },
+  {
+    "id": "g16",
+    "team": "dames-2",
+    "opponent": "Attilladies 2",
+    "date": "2027-04-15",
+    "time": "19:30",
+    "location": "Sporthal Don Bosco (Gr. Bijgaarden)",
+    "homeOrAway": "uit"
+  },
+  {
+    "id": "g17",
+    "team": "dames-1",
+    "opponent": "VOLLEY D BOUTERSEM",
+    "date": "2026-09-23",
+    "time": "20:30",
+    "location": "Sporthal Rijschool Leuven",
+    "homeOrAway": "thuis"
+  },
+  {
+    "id": "g18",
+    "team": "dames-1",
+    "opponent": "HERVOC HERENT",
+    "date": "2026-10-07",
+    "time": "20:30",
+    "location": "Sporthal Rijschool Leuven",
+    "homeOrAway": "thuis"
+  },
+  {
+    "id": "g19",
+    "team": "dames-1",
+    "opponent": "FENIKS D HAACHT",
+    "date": "2026-10-21",
+    "time": "20:30",
+    "location": "Sporthal Rijschool Leuven",
+    "homeOrAway": "thuis"
+  },
+  {
+    "id": "g20",
+    "team": "dames-1",
+    "opponent": "AKUUT D HERENT VC",
+    "date": "2026-10-28",
+    "time": "20:30",
+    "location": "Sporthal Rijschool Leuven",
+    "homeOrAway": "thuis"
+  },
+  {
+    "id": "g21",
+    "team": "dames-1",
+    "opponent": "KREG LD ROTSELAAR",
+    "date": "2026-12-02",
+    "time": "20:30",
+    "location": "Sporthal Rijschool Leuven",
+    "homeOrAway": "thuis"
+  },
+  {
+    "id": "g22",
+    "team": "dames-1",
+    "opponent": "LADIES VHL Haasrode",
+    "date": "2026-12-16",
+    "time": "20:30",
+    "location": "Sporthal Rijschool Leuven",
+    "homeOrAway": "thuis"
+  },
+  {
+    "id": "g23",
+    "team": "dames-1",
+    "opponent": "BETEKOM VBC",
+    "date": "2027-01-20",
+    "time": "20:30",
+    "location": "Sporthal Rijschool Leuven",
+    "homeOrAway": "thuis"
+  },
+  {
+    "id": "g24",
+    "team": "dames-1",
+    "opponent": "Volleyskiteam D Betekom",
+    "date": "2027-03-10",
+    "time": "20:30",
+    "location": "Sporthal Rijschool Leuven",
+    "homeOrAway": "thuis"
+  },
+  {
+    "id": "g25",
+    "team": "dames-1",
+    "opponent": "BERG-AF WIJGMAAL",
+    "date": "2027-04-14",
+    "time": "20:30",
+    "location": "Sporthal Rijschool Leuven",
+    "homeOrAway": "thuis"
+  },
+  {
+    "id": "g26",
+    "team": "dames-1",
+    "opponent": "LADIES VHL Haasrode",
+    "date": "2026-09-17",
+    "time": "21:15",
+    "location": "Sporthal Heverlee, Hertogstraat 180, 3001 Heverlee",
+    "homeOrAway": "uit"
+  },
+  {
+    "id": "g27",
+    "team": "dames-1",
+    "opponent": "BETEKOM VBC",
+    "date": "2026-10-01",
+    "time": "20:15",
+    "location": "Sporthal Tumkens Betekom, Pastoor Pitetlaan 30, 3130 Begijnendijk",
+    "homeOrAway": "uit"
+  },
+  {
+    "id": "g28",
+    "team": "dames-1",
+    "opponent": "Volleyskiteam D Betekom",
+    "date": "2026-11-16",
+    "time": "20:15",
+    "location": "Sportzaal 't Zand, Baalsebaan 291, 3128 Baal",
+    "homeOrAway": "uit"
+  },
+  {
+    "id": "g29",
+    "team": "dames-1",
+    "opponent": "BERG-AF WIJGMAAL",
+    "date": "2026-12-11",
+    "time": "20:30",
+    "location": "Sportcomplex Ymeria, Pastoor Bellonstraat 29, 3018 Wijgmaal",
+    "homeOrAway": "uit"
+  },
+  {
+    "id": "g30",
+    "team": "dames-1",
+    "opponent": "VOLLEY D BOUTERSEM",
+    "date": "2027-01-15",
+    "time": "21:15",
+    "location": "Sport O Droom Boutersem, Kerkomsesteenweg 42, 3370 Boutersem",
+    "homeOrAway": "uit"
+  },
+  {
+    "id": "g31",
+    "team": "dames-1",
+    "opponent": "HERVOC HERENT",
+    "date": "2027-01-31",
+    "time": "14:30",
+    "location": "Sportcentrum Bart Swings, Kouterstaat 1, 3020 Herent",
+    "homeOrAway": "uit"
+  },
+  {
+    "id": "g32",
+    "team": "dames-1",
+    "opponent": "FENIKS D HAACHT",
+    "date": "2027-02-23",
+    "time": "20:30",
+    "location": "Sporthal Den Box, Dijkstraat 1, 3150 Haacht",
+    "homeOrAway": "uit"
+  },
+  {
+    "id": "g33",
+    "team": "dames-1",
+    "opponent": "AKUUT D HERENT VC",
+    "date": "2027-03-07",
+    "time": "10:15",
+    "location": "Sportcentrum Bart Swings, Kouterstaat 1, 3020 Herent",
+    "homeOrAway": "uit"
+  },
+  {
+    "id": "g34",
+    "team": "dames-1",
+    "opponent": "KREG LD ROTSELAAR",
+    "date": "2027-03-26",
+    "time": "21:00",
+    "location": "Sportzaal De Meander, Vakenstraat 18, 3110 Rotselaar",
+    "homeOrAway": "uit"
+  },
+  {
+    "id": "g35",
+    "team": "heren-1",
+    "opponent": "AARSCHOT BVS H",
+    "date": "2026-09-22",
+    "time": "21:00",
+    "location": "Sportschuur, Wilsele",
+    "homeOrAway": "thuis"
+  },
+  {
+    "id": "g36",
+    "team": "heren-1",
+    "opponent": "VLIERVOC LEUVEN",
+    "date": "2026-10-06",
+    "time": "21:00",
+    "location": "Sportschuur, Wilsele",
+    "homeOrAway": "thuis"
+  },
+  {
+    "id": "g37",
+    "team": "heren-1",
+    "opponent": "SUIKERVOC 2.0 TIENEN",
+    "date": "2026-10-20",
+    "time": "21:00",
+    "location": "Sportschuur, Wilsele",
+    "homeOrAway": "thuis"
+  },
+  {
+    "id": "g38",
+    "team": "heren-1",
+    "opponent": "GRIVOK H GRIMBERGEN",
+    "date": "2026-10-27",
+    "time": "21:00",
+    "location": "Sportschuur, Wilsele",
+    "homeOrAway": "thuis"
+  },
+  {
+    "id": "g39",
+    "team": "heren-1",
+    "opponent": "DE SOLVELDERS 1 TIELT-W.",
+    "date": "2026-12-08",
+    "time": "21:00",
+    "location": "Sportschuur, Wilsele",
+    "homeOrAway": "thuis"
+  },
+  {
+    "id": "g40",
+    "team": "heren-1",
+    "opponent": "STERKO KORTENBERG",
+    "date": "2026-12-15",
+    "time": "21:00",
+    "location": "Sportschuur, Wilsele",
+    "homeOrAway": "thuis"
+  },
+  {
+    "id": "g41",
+    "team": "heren-1",
+    "opponent": "VIP ERPS KWERPS",
+    "date": "2027-02-16",
+    "time": "21:00",
+    "location": "Sportschuur, Wilsele",
+    "homeOrAway": "thuis"
+  },
+  {
+    "id": "g42",
+    "team": "heren-1",
+    "opponent": "AKUUT H HERENT VC",
+    "date": "2027-03-09",
+    "time": "21:00",
+    "location": "Sportschuur, Wilsele",
+    "homeOrAway": "thuis"
+  },
+  {
+    "id": "g43",
+    "team": "heren-1",
+    "opponent": "MOLENSTEDE VC",
+    "date": "2027-03-16",
+    "time": "21:00",
+    "location": "Sportschuur, Wilsele",
+    "homeOrAway": "thuis"
+  },
+  {
+    "id": "g44",
+    "team": "heren-1",
+    "opponent": "STERKO KORTENBERG",
+    "date": "2026-09-18",
+    "time": "21:00",
+    "location": "Sporthal Erps-Kwerps, Oudebaan 14, 3071 Erps-Kwerps",
+    "homeOrAway": "uit"
+  },
+  {
+    "id": "g45",
+    "team": "heren-1",
+    "opponent": "VIP ERPS KWERPS",
+    "date": "2026-09-27",
+    "time": "10:15",
+    "location": "Sporthal Erps-Kwerps, Oudebaan 14, 3071 Erps-Kwerps",
+    "homeOrAway": "uit"
+  },
+  {
+    "id": "g46",
+    "team": "heren-1",
+    "opponent": "AKUUT H HERENT VC",
+    "date": "2026-11-22",
+    "time": "10:15",
+    "location": "Sportcentrum Bart Swings, Kouterstaat 1, 3020 Herent",
+    "homeOrAway": "uit"
+  },
+  {
+    "id": "g47",
+    "team": "heren-1",
+    "opponent": "MOLENSTEDE VC",
+    "date": "2026-11-23",
+    "time": "20:30",
+    "location": "OC 't Molenhuis, Dorpsstraat 45, 3294 Molenstede",
+    "homeOrAway": "uit"
+  },
+  {
+    "id": "g48",
+    "team": "heren-1",
+    "opponent": "AARSCHOT BVS H",
+    "date": "2027-01-22",
+    "time": "20:15",
+    "location": "Sportzaal Bek-Af Zuid, Bekaflaan 65, 3200 Aarschot",
+    "homeOrAway": "uit"
+  },
+  {
+    "id": "g49",
+    "team": "heren-1",
+    "opponent": "VLIERVOC LEUVEN",
+    "date": "2027-01-29",
+    "time": "20:15",
+    "location": "De Rijschool, Rijschoolstraat 21, 3000 Leuven",
+    "homeOrAway": "uit"
+  },
+  {
+    "id": "g50",
+    "team": "heren-1",
+    "opponent": "SUIKERVOC 2.0 TIENEN",
+    "date": "2027-02-25",
+    "time": "20:30",
+    "location": "Houtemveld Hal 1, Sporthalstraat 1, 3300 Tienen",
+    "homeOrAway": "uit"
+  },
+  {
+    "id": "g51",
+    "team": "heren-1",
+    "opponent": "GRIVOK H GRIMBERGEN",
+    "date": "2027-03-03",
+    "time": "21:00",
+    "location": "Sporthal Prinsenbos, Pastoor Woutersstraat, 1850 Grimbergen",
+    "homeOrAway": "uit"
+  },
+  {
+    "id": "g52",
+    "team": "heren-1",
+    "opponent": "DE SOLVELDERS 1 TIELT-W.",
+    "date": "2027-04-13",
+    "time": "21:15",
+    "location": "Sportcomplex 't Solveld, Ralisweg 17, 3390 Tielt (Bt.)",
+    "homeOrAway": "uit"
+  }
+]

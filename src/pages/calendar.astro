@@ -1,0 +1,94 @@
+---
+import { getCollection, getEntry } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const teams = (await getCollection('teams')).sort((a, b) => a.data.category.localeCompare(b.data.category));
+const games = (await getCollection('games')).sort((a, b) => a.data.date.valueOf() - b.data.date.valueOf());
+
+const rows = await Promise.all(
+  games.map(async (game) => {
+    const team = await getEntry('teams', game.data.team);
+    const teamName = team?.data.name ?? game.data.team;
+    const isHome = game.data.homeOrAway === 'thuis';
+    return {
+      ...game.data,
+      thuisploeg: isHome ? teamName : game.data.opponent,
+      bezoekers: isHome ? game.data.opponent : teamName,
+    };
+  })
+);
+
+const maandAfkortingen = ['jan', 'feb', 'mrt', 'apr', 'mei', 'jun', 'jul', 'aug', 'sep', 'okt', 'nov', 'dec'];
+const dagAfkortingen = ['zo', 'ma', 'di', 'wo', 'do', 'vr', 'za'];
+const formatDatum = (date: Date) =>
+  `${String(date.getDate()).padStart(2, '0')} ${maandAfkortingen[date.getMonth()]} ${String(date.getFullYear() % 100).padStart(2, '0')}`;
+---
+
+<BaseLayout title="Kalender">
+  <h1 class="text-3xl font-bold text-slate-900">Wedstrijdkalender</h1>
+
+  <div class="mt-6 flex flex-wrap gap-2 border-b border-slate-200">
+    {teams.map((team, i) => (
+      <button
+        type="button"
+        data-tab-target={team.id}
+        class:list={[
+          'tab-button cursor-pointer border-b-2 px-4 py-2 text-sm font-medium transition-colors',
+          i === 0 ? 'border-orange-600 text-orange-600' : 'border-transparent text-slate-600 hover:text-orange-600',
+        ]}
+      >
+        {team.data.name}
+      </button>
+    ))}
+  </div>
+
+  {teams.map((team, i) => (
+    <div data-tab-panel={team.id} class:list={['mt-4 overflow-x-auto rounded-lg border border-slate-200 bg-white shadow-sm', { hidden: i !== 0 }]}>
+      <table class="w-full text-left text-sm">
+        <thead class="bg-slate-100 text-xs uppercase text-slate-500">
+          <tr>
+            <th class="px-4 py-3">Dag</th>
+            <th class="px-4 py-3">Datum</th>
+            <th class="px-4 py-3">Uur</th>
+            <th class="px-4 py-3">Thuisploeg</th>
+            <th class="px-4 py-3">Bezoekers</th>
+            <th class="px-4 py-3">Locatie</th>
+          </tr>
+        </thead>
+        <tbody>
+          {rows
+            .filter((row) => row.team === team.id)
+            .map((row) => (
+              <tr class="border-t border-slate-100">
+                <td class="px-4 py-3">{dagAfkortingen[row.date.getDay()]}</td>
+                <td class="whitespace-nowrap px-4 py-3">{formatDatum(row.date)}</td>
+                <td class="px-4 py-3">{row.time}h</td>
+                <td class="px-4 py-3 font-medium text-slate-900">{row.thuisploeg}</td>
+                <td class="px-4 py-3">{row.bezoekers}</td>
+                <td class="px-4 py-3">{row.location}</td>
+              </tr>
+            ))}
+        </tbody>
+      </table>
+    </div>
+  ))}
+</BaseLayout>
+
+<script>
+  const buttons = document.querySelectorAll<HTMLButtonElement>('.tab-button');
+  buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+      const target = button.dataset.tabTarget;
+      buttons.forEach((b) => {
+        b.classList.toggle('border-orange-600', b === button);
+        b.classList.toggle('text-orange-600', b === button);
+        b.classList.toggle('border-transparent', b !== button);
+        b.classList.toggle('text-slate-600', b !== button);
+      });
+      document.querySelectorAll<HTMLElement>('[data-tab-panel]').forEach((panel) => {
+        panel.classList.toggle('hidden', panel.dataset.tabPanel !== target);
+      });
+    });
+  });
+</script>
+
