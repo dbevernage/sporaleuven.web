@@ -38,6 +38,7 @@ module appServicePlan 'br/public:avm/res/web/serverfarm:0.4.1' = {
     skuCapacity: skuCapacity
     kind: 'linux'
     reserved: true
+    zoneRedundant: false
   }
 }
 
