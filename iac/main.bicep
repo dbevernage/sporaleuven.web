@@ -51,12 +51,12 @@ module appService 'br/public:avm/res/web/site:0.15.1' = {
     kind: 'app,linux'
     serverFarmResourceId: appServicePlan.outputs.resourceId
     siteConfig: {
-      linuxFxVersion: 'NODE|22-lts'
+      linuxFxVersion: 'NODE|26-lts'
       appCommandLine: 'npm start'
     }
     appSettingsKeyValuePairs: {
       SCM_DO_BUILD_DURING_DEPLOYMENT: 'false'
-      WEBSITE_NODE_DEFAULT_VERSION: '~22'
+      WEBSITE_NODE_DEFAULT_VERSION: '~26'
     }
   }
 }
