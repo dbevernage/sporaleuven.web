@@ -1,6 +1,6 @@
 // Deploys the Azure infrastructure for the Spora Leuven website: a dedicated resource group,
 // an App Service Plan (Linux) and an App Service (Web App), using Azure Verified Modules (AVM).
-targetScope = 'subscription'
+targetScope = 'resourceGroup'
 
 @description('Azure region for all resources.')
 param location string = 'westeurope'
@@ -20,13 +20,13 @@ param skuName string = 'B1'
 @description('App Service Plan instance count.')
 param skuCapacity int = 1
 
-module resourceGroupDeployment 'resourceGroup.bicep' = {
-  name: 'deploy-resource-group'
-  params: {
-    resourceGroupName: resourceGroupName
-    location: location
-  }
-}
+//module resourceGroupDeployment 'resourceGroup.bicep' = {
+//  name: 'deploy-resource-group'
+//  params: {
+//    resourceGroupName: resourceGroupName
+//    location: location
+//  }
+//}
 
 module appServicePlan 'br/public:avm/res/web/serverfarm:0.4.1' = {
   name: 'deploy-app-service-plan'
@@ -39,9 +39,6 @@ module appServicePlan 'br/public:avm/res/web/serverfarm:0.4.1' = {
     kind: 'linux'
     reserved: true
   }
-  dependsOn: [
-    resourceGroupDeployment
-  ]
 }
 
 module appService 'br/public:avm/res/web/site:0.15.1' = {
