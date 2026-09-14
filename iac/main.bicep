@@ -6,19 +6,25 @@ targetScope = 'resourceGroup'
 param location string = 'westeurope'
 
 @description('Name of the dedicated resource group.')
-param resourceGroupName string = 'rg-spora-leuven-web'
+param resourceGroupName string = 'rg-spora-web-prd-bec'
 
 @description('Name of the App Service Plan.')
-param appServicePlanName string = 'asp-spora-leuven'
+param appServicePlanName string = 'asp-spora-web-prd-bec'
 
 @description('Name of the App Service (must be globally unique).')
-param appServiceName string = 'app-spora-leuven'
+param appServiceName string = 'app-spora-web-prd-bec'
 
 @description('App Service Plan SKU name (e.g. B1, S1, P1v3).')
 param skuName string = 'B1'
 
 @description('App Service Plan instance count.')
 param skuCapacity int = 1
+
+@description('Name of the Log Analytics workspace backing Application Insights.')
+param logAnalyticsWorkspaceName string = 'log-spora-web-prd-bec'
+
+@description('Name of the Application Insights instance.')
+param applicationInsightsName string = 'appi-spora-web-prd-bec'
 
 //module resourceGroupDeployment 'resourceGroup.bicep' = {
 //  name: 'deploy-resource-group'
@@ -42,6 +48,27 @@ module appServicePlan 'br/public:avm/res/web/serverfarm:0.4.1' = {
   }
 }
 
+module logAnalyticsWorkspace 'br/public:avm/res/operational-insights/workspace:0.16.0' = {
+  name: 'deploy-log-analytics-workspace'
+  scope: resourceGroup(resourceGroupName)
+  params: {
+    name: logAnalyticsWorkspaceName
+    location: location
+  }
+}
+
+module applicationInsights 'br/public:avm/res/insights/component:0.8.0' = {
+  name: 'deploy-application-insights'
+  scope: resourceGroup(resourceGroupName)
+  params: {
+    name: applicationInsightsName
+    location: location
+    kind: 'web'
+    applicationType: 'web'
+    workspaceResourceId: logAnalyticsWorkspace.outputs.resourceId
+  }
+}
+
 module appService 'br/public:avm/res/web/site:0.15.1' = {
   name: 'deploy-app-service'
   scope: resourceGroup(resourceGroupName)
@@ -57,6 +84,8 @@ module appService 'br/public:avm/res/web/site:0.15.1' = {
     appSettingsKeyValuePairs: {
       SCM_DO_BUILD_DURING_DEPLOYMENT: 'false'
       WEBSITE_NODE_DEFAULT_VERSION: '~26'
+      APPLICATIONINSIGHTS_CONNECTION_STRING: applicationInsights.outputs.connectionString
+      ApplicationInsightsAgent_EXTENSION_VERSION: '~3'
     }
   }
 }
@@ -69,3 +98,10 @@ output resourceGroupName string = resourceGroupName
 
 @description('Name of the App Service that was created.')
 output appServiceName string = appServiceName
+
+@description('Name of the Application Insights instance that was created.')
+output applicationInsightsName string = applicationInsights.outputs.name
+
+@secure()
+@description('Connection string of the Application Insights instance.')
+output applicationInsightsConnectionString string = applicationInsights.outputs.connectionString
