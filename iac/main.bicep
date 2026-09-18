@@ -42,19 +42,19 @@ param staticWebAppCustomDomain string = 'sporaleuven.be'
 @description('Static Web App SKU.')
 param staticWebAppSku string = 'Free'
 
-module appServicePlan 'br/public:avm/res/web/serverfarm:0.4.1' = {
-  name: 'deploy-app-service-plan'
-  scope: resourceGroup(resourceGroupName)
-  params: {
-    name: appServicePlanName
-    location: location
-    skuName: skuName
-    skuCapacity: skuCapacity
-    kind: 'linux'
-    reserved: true
-    zoneRedundant: false
-  }
-}
+// module appServicePlan 'br/public:avm/res/web/serverfarm:0.4.1' = {
+//   name: 'deploy-app-service-plan'
+//   scope: resourceGroup(resourceGroupName)
+//   params: {
+//     name: appServicePlanName
+//     location: location
+//     skuName: skuName
+//     skuCapacity: skuCapacity
+//     kind: 'linux'
+//     reserved: true
+//     zoneRedundant: false
+//   }
+// }
 
 module logAnalyticsWorkspace 'br/public:avm/res/operational-insights/workspace:0.16.0' = {
   name: 'deploy-log-analytics-workspace'
@@ -62,39 +62,6 @@ module logAnalyticsWorkspace 'br/public:avm/res/operational-insights/workspace:0
   params: {
     name: logAnalyticsWorkspaceName
     location: locationAlt
-  }
-}
-
-module applicationInsights 'br/public:avm/res/insights/component:0.8.0' = {
-  name: 'deploy-application-insights'
-  scope: resourceGroup(resourceGroupName)
-  params: {
-    name: applicationInsightsName
-    location: locationAlt
-    kind: 'web'
-    applicationType: 'web'
-    workspaceResourceId: logAnalyticsWorkspace.outputs.resourceId
-  }
-}
-
-module appService 'br/public:avm/res/web/site:0.15.1' = {
-  name: 'deploy-app-service'
-  scope: resourceGroup(resourceGroupName)
-  params: {
-    name: appServiceName
-    location: location
-    kind: 'app,linux'
-    serverFarmResourceId: appServicePlan.outputs.resourceId
-    siteConfig: {
-      linuxFxVersion: 'NODE|26-lts'
-      appCommandLine: 'npm start'
-    }
-    appSettingsKeyValuePairs: {
-      SCM_DO_BUILD_DURING_DEPLOYMENT: 'false'
-      WEBSITE_NODE_DEFAULT_VERSION: '~26'
-      APPLICATIONINSIGHTS_CONNECTION_STRING: applicationInsights.outputs.connectionString
-      ApplicationInsightsAgent_EXTENSION_VERSION: '~3'
-    }
   }
 }
 
@@ -112,8 +79,38 @@ module staticWebApp 'br/public:avm/res/web/static-site:0.9.6' = {
   }
 }
 
-@description('Default hostname of the deployed App Service.')
-output appServiceHostName string = appService.outputs.defaultHostname
+// module applicationInsights 'br/public:avm/res/insights/component:0.8.0' = {
+//   name: 'deploy-application-insights'
+//   scope: resourceGroup(resourceGroupName)
+//   params: {
+//     name: applicationInsightsName
+//     location: locationAlt
+//     kind: 'web'
+//     applicationType: 'web'
+//     workspaceResourceId: logAnalyticsWorkspace.outputs.resourceId
+//   }
+// }
+
+// module appService 'br/public:avm/res/web/site:0.15.1' = {
+//   name: 'deploy-app-service'
+//   scope: resourceGroup(resourceGroupName)
+//   params: {
+//     name: appServiceName
+//     location: location
+//     kind: 'app,linux'
+//     serverFarmResourceId: appServicePlan.outputs.resourceId
+//     siteConfig: {
+//       linuxFxVersion: 'NODE|26-lts'
+//       appCommandLine: 'npm start'
+//     }
+//     appSettingsKeyValuePairs: {
+//       SCM_DO_BUILD_DURING_DEPLOYMENT: 'false'
+//       WEBSITE_NODE_DEFAULT_VERSION: '~26'
+//       APPLICATIONINSIGHTS_CONNECTION_STRING: applicationInsights.outputs.connectionString
+//       ApplicationInsightsAgent_EXTENSION_VERSION: '~3'
+//     }
+//   }
+// }
 
 @description('Default hostname of the deployed Static Web App.')
 output staticWebAppHostName string = staticWebApp.outputs.defaultHostname
@@ -121,15 +118,5 @@ output staticWebAppHostName string = staticWebApp.outputs.defaultHostname
 @description('Name of the resource group that was created.')
 output resourceGroupName string = resourceGroupName
 
-@description('Name of the App Service that was created.')
-output appServiceName string = appServiceName
-
 @description('Name of the Static Web App that was created.')
 output staticWebAppName string = staticWebApp.outputs.name
-
-@description('Name of the Application Insights instance that was created.')
-output applicationInsightsName string = applicationInsights.outputs.name
-
-@secure()
-@description('Connection string of the Application Insights instance.')
-output applicationInsightsConnectionString string = applicationInsights.outputs.connectionString
