@@ -56,7 +56,7 @@ module logAnalyticsWorkspace 'br/public:avm/res/operational-insights/workspace:0
   scope: resourceGroup(resourceGroupName)
   params: {
     name: logAnalyticsWorkspaceName
-    location: location
+    location: locationAI
   }
 }
 
