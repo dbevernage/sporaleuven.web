@@ -32,6 +32,9 @@ param applicationInsightsName string = 'appi-spora-web-prd-bec'
 @description('Name of the Static Web App.')
 param staticWebAppName string = 'stapp-spora-web-prd-bec'
 
+@description('Custom domain for the Static Web App.')
+param staticWebAppCustomDomain string = 'sporaleuven.be'
+
 @allowed([
   'Free'
   'Standard'
@@ -102,6 +105,10 @@ module staticWebApp 'br/public:avm/res/web/static-site:0.9.6' = {
     name: staticWebAppName
     location: locationAlt
     sku: staticWebAppSku
+    customDomains: [
+      staticWebAppCustomDomain
+    ]
+    validationMethod: 'dns-txt-token'
   }
 }
 
