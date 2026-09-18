@@ -2,8 +2,11 @@
 // an App Service Plan (Linux) and an App Service (Web App), using Azure Verified Modules (AVM).
 targetScope = 'resourceGroup'
 
-@description('Azure region for all resources.')
+@description('Default Azure region for all resources.')
 param location string = 'westeurope'
+
+@description('Alt. Azure region for Application Insights.')
+param locationAI string = 'westeurope'
 
 @description('Name of the dedicated resource group.')
 param resourceGroupName string = 'rg-spora-web-prd-bec'
@@ -62,7 +65,7 @@ module applicationInsights 'br/public:avm/res/insights/component:0.8.0' = {
   scope: resourceGroup(resourceGroupName)
   params: {
     name: applicationInsightsName
-    location: location
+    location: locationAI
     kind: 'web'
     applicationType: 'web'
     workspaceResourceId: logAnalyticsWorkspace.outputs.resourceId
