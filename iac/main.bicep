@@ -5,29 +5,11 @@ targetScope = 'resourceGroup'
 @description('Default Azure region for all resources.')
 param location string = 'westeurope'
 
-@description('Alt. Azure region for Application Insights.')
-param locationAlt string = 'westeurope'
-
 @description('Name of the dedicated resource group.')
 param resourceGroupName string = 'rg-spora-web-prd-bec'
 
-@description('Name of the App Service Plan.')
-param appServicePlanName string = 'asp-spora-web-prd-bec'
-
-@description('Name of the App Service (must be globally unique).')
-param appServiceName string = 'app-spora-web-prd-bec'
-
-@description('App Service Plan SKU name (e.g. B1, S1, P1v3).')
-param skuName string = 'B1'
-
-@description('App Service Plan instance count.')
-param skuCapacity int = 1
-
 @description('Name of the Log Analytics workspace backing Application Insights.')
 param logAnalyticsWorkspaceName string = 'log-spora-web-prd-bec'
-
-@description('Name of the Application Insights instance.')
-param applicationInsightsName string = 'appi-spora-web-prd-bec'
 
 @description('Name of the Static Web App.')
 param staticWebAppName string = 'stapp-spora-web-prd-bec'
@@ -61,7 +43,7 @@ module logAnalyticsWorkspace 'br/public:avm/res/operational-insights/workspace:0
   scope: resourceGroup(resourceGroupName)
   params: {
     name: logAnalyticsWorkspaceName
-    location: locationAlt
+    location: location
   }
 }
 
@@ -70,7 +52,7 @@ module staticWebApp 'br/public:avm/res/web/static-site:0.9.6' = {
   scope: resourceGroup(resourceGroupName)
   params: {
     name: staticWebAppName
-    location: locationAlt
+    location: location
     sku: staticWebAppSku
     customDomains: [
       staticWebAppCustomDomain
