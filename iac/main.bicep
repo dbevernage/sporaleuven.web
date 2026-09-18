@@ -5,9 +5,6 @@ targetScope = 'resourceGroup'
 @description('Default Azure region for all resources.')
 param location string = 'westeurope'
 
-@description('Alternative Azure region for all resources outside of primary region.')
-param locationAlt string = 'westeurope'
-
 @description('Name of the dedicated resource group.')
 param resourceGroupName string = 'rg-spora-web-prd-bec'
 
@@ -46,7 +43,7 @@ module logAnalyticsWorkspace 'br/public:avm/res/operational-insights/workspace:0
   scope: resourceGroup(resourceGroupName)
   params: {
     name: logAnalyticsWorkspaceName
-    location: locationAlt
+    location: location
   }
 }
 
@@ -55,7 +52,7 @@ module staticWebApp 'br/public:avm/res/web/static-site:0.9.6' = {
   scope: resourceGroup(resourceGroupName)
   params: {
     name: staticWebAppName
-    location: locationAlt
+    location: location
     sku: staticWebAppSku
     customDomains: [
       staticWebAppCustomDomain

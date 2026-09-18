@@ -1,7 +1,6 @@
 using 'main.bicep'
 
-param location = 'belgiumcentral'
-param locationAlt = 'westeurope'
+param location = 'westeurope'
 param resourceGroupName = 'rg-spora-web-prd-bec'
 param logAnalyticsWorkspaceName = 'log-spora-web-prd-euw'
 param staticWebAppName = 'stapp-spora-web-prd-euw'
