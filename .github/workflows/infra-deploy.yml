@@ -5,9 +5,7 @@ on:
     branches:
       - master
     paths:
-      - 'iac/main.bicep'
-      - 'iac/main.bicepparam'
-      - '.github/workflows/infra-deploy.yml'
+      - 'iac/**'
   workflow_dispatch:
 
 jobs:

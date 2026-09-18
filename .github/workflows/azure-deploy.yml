@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - master
+    paths-ignore:
+      - 'iac/**'
   workflow_dispatch:
 
 env:
