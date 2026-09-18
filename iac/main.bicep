@@ -1,5 +1,5 @@
 // Deploys the Azure infrastructure for the Spora Leuven website: a dedicated resource group,
-// an App Service Plan (Linux) and an App Service (Web App), using Azure Verified Modules (AVM).
+// an App Service Plan, an App Service, and a Static Web App, using Azure Verified Modules (AVM).
 targetScope = 'resourceGroup'
 
 @description('Default Azure region for all resources.')
@@ -28,6 +28,19 @@ param logAnalyticsWorkspaceName string = 'log-spora-web-prd-bec'
 
 @description('Name of the Application Insights instance.')
 param applicationInsightsName string = 'appi-spora-web-prd-bec'
+
+@description('Azure region for the Static Web App.')
+param staticWebAppLocation string = 'westeurope'
+
+@description('Name of the Static Web App.')
+param staticWebAppName string = 'stapp-spora-web-prd-bec'
+
+@allowed([
+  'Free'
+  'Standard'
+])
+@description('Static Web App SKU.')
+param staticWebAppSku string = 'Free'
 
 //module resourceGroupDeployment 'resourceGroup.bicep' = {
 //  name: 'deploy-resource-group'
@@ -93,14 +106,30 @@ module appService 'br/public:avm/res/web/site:0.15.1' = {
   }
 }
 
+module staticWebApp 'br/public:avm/res/web/static-site:0.9.6' = {
+  name: 'deploy-static-web-app'
+  scope: resourceGroup(resourceGroupName)
+  params: {
+    name: staticWebAppName
+    location: location
+    sku: staticWebAppSku
+  }
+}
+
 @description('Default hostname of the deployed App Service.')
 output appServiceHostName string = appService.outputs.defaultHostname
+
+@description('Default hostname of the deployed Static Web App.')
+output staticWebAppHostName string = staticWebApp.outputs.defaultHostname
 
 @description('Name of the resource group that was created.')
 output resourceGroupName string = resourceGroupName
 
 @description('Name of the App Service that was created.')
 output appServiceName string = appServiceName
+
+@description('Name of the Static Web App that was created.')
+output staticWebAppName string = staticWebApp.outputs.name
 
 @description('Name of the Application Insights instance that was created.')
 output applicationInsightsName string = applicationInsights.outputs.name

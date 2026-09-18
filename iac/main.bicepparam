@@ -9,3 +9,5 @@ param skuName = 'P0v3'
 param skuCapacity = 1
 param logAnalyticsWorkspaceName = 'log-spora-web-prd-bec'
 param applicationInsightsName = 'appi-spora-web-prd-bec'
+param staticWebAppName = 'stapp-spora-web-prd-bec'
+param staticWebAppSku = 'Free'
