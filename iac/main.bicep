@@ -111,7 +111,7 @@ module staticWebApp 'br/public:avm/res/web/static-site:0.9.6' = {
   scope: resourceGroup(resourceGroupName)
   params: {
     name: staticWebAppName
-    location: location
+    location: staticWebAppLocation
     sku: staticWebAppSku
   }
 }
