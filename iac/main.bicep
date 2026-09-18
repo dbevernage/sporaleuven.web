@@ -6,7 +6,7 @@ targetScope = 'resourceGroup'
 param location string = 'westeurope'
 
 @description('Alt. Azure region for Application Insights.')
-param locationAI string = 'westeurope'
+param locationAlt string = 'westeurope'
 
 @description('Name of the dedicated resource group.')
 param resourceGroupName string = 'rg-spora-web-prd-bec'
@@ -29,9 +29,6 @@ param logAnalyticsWorkspaceName string = 'log-spora-web-prd-bec'
 @description('Name of the Application Insights instance.')
 param applicationInsightsName string = 'appi-spora-web-prd-bec'
 
-@description('Azure region for the Static Web App.')
-param staticWebAppLocation string = 'westeurope'
-
 @description('Name of the Static Web App.')
 param staticWebAppName string = 'stapp-spora-web-prd-bec'
 
@@ -41,14 +38,6 @@ param staticWebAppName string = 'stapp-spora-web-prd-bec'
 ])
 @description('Static Web App SKU.')
 param staticWebAppSku string = 'Free'
-
-//module resourceGroupDeployment 'resourceGroup.bicep' = {
-//  name: 'deploy-resource-group'
-//  params: {
-//    resourceGroupName: resourceGroupName
-//    location: location
-//  }
-//}
 
 module appServicePlan 'br/public:avm/res/web/serverfarm:0.4.1' = {
   name: 'deploy-app-service-plan'
@@ -69,7 +58,7 @@ module logAnalyticsWorkspace 'br/public:avm/res/operational-insights/workspace:0
   scope: resourceGroup(resourceGroupName)
   params: {
     name: logAnalyticsWorkspaceName
-    location: locationAI
+    location: locationAlt
   }
 }
 
@@ -78,7 +67,7 @@ module applicationInsights 'br/public:avm/res/insights/component:0.8.0' = {
   scope: resourceGroup(resourceGroupName)
   params: {
     name: applicationInsightsName
-    location: locationAI
+    location: locationAlt
     kind: 'web'
     applicationType: 'web'
     workspaceResourceId: logAnalyticsWorkspace.outputs.resourceId
@@ -111,7 +100,7 @@ module staticWebApp 'br/public:avm/res/web/static-site:0.9.6' = {
   scope: resourceGroup(resourceGroupName)
   params: {
     name: staticWebAppName
-    location: staticWebAppLocation
+    location: locationAlt
     sku: staticWebAppSku
   }
 }
