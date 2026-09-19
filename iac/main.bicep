@@ -61,6 +61,35 @@ module staticWebApp 'br/public:avm/res/web/static-site:0.9.6' = {
   }
 }
 
+// The AVM static-site module (0.9.6) does not expose a diagnosticSettings parameter,
+// so the diagnostic setting is declared directly against the deployed resource.
+resource staticWebAppExisting 'Microsoft.Web/staticSites@2023-12-01' existing = {
+  name: staticWebAppName
+}
+
+resource staticWebAppDiagnostics 'Microsoft.Insights/diagnosticSettings@2021-05-01-preview' = {
+  name: 'diag-${staticWebAppName}-log-analytics'
+  scope: staticWebAppExisting
+  properties: {
+    workspaceId: logAnalyticsWorkspace.outputs.resourceId
+    logs: [
+      {
+        categoryGroup: 'allLogs'
+        enabled: true
+      }
+    ]
+    metrics: [
+      {
+        category: 'AllMetrics'
+        enabled: true
+      }
+    ]
+  }
+  dependsOn: [
+    staticWebApp
+  ]
+}
+
 // module applicationInsights 'br/public:avm/res/insights/component:0.8.0' = {
 //   name: 'deploy-application-insights'
 //   scope: resourceGroup(resourceGroupName)
