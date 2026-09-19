@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { CONTACT_EMAIL } from '../consts';
 
 const gyms = await getCollection('gyms');
 ---
@@ -12,7 +13,7 @@ const gyms = await getCollection('gyms');
     <h2 class="text-lg font-semibold text-slate-900">Algemene contactgegevens</h2>
     <p class="mt-2 text-slate-600">
       Voor alle vragen kan je terecht op&nbsp;
-      <a href="mailto:info@sporaleuven.be" class="text-orange-600 hover:underline">info@sporaleuven.be</a>.
+      <a href={`mailto:${CONTACT_EMAIL}`} class="text-orange-600 hover:underline">{CONTACT_EMAIL}</a>.
     </p>
   </section>
 

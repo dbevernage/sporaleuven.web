@@ -1,4 +1,6 @@
 ---
+import { CONTACT_EMAIL } from '../consts';
+
 const year = new Date().getFullYear();
 ---
 
@@ -6,7 +8,7 @@ const year = new Date().getFullYear();
   <div class="mx-auto max-w-5xl px-4 py-6 text-sm text-slate-600">
     <p class="font-semibold text-slate-800">Volleybalclub Spora Leuven</p>
     <p>
-      Contact: <a href="mailto:info@sporaleuven.be" class="text-orange-600 hover:underline">info@sporaleuven.be</a>
+      Contact: <a href={`mailto:${CONTACT_EMAIL}`} class="text-orange-600 hover:underline">{CONTACT_EMAIL}</a>
     </p>
     <p class="mt-2 text-slate-400">&copy; {year} Spora Leuven</p>
   </div>
