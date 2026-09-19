@@ -1,6 +1,6 @@
 ---
 title: "Nieuwe website!"
-date: 2026-09-11
+date: 2026-09-19
 summary: "Tijd om Spora terug een digitaal plaatsje te geven."
 ---
 
