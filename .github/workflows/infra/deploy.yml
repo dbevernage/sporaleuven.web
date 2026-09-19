@@ -1,4 +1,4 @@
-name: Build and deploy Azure infrastructure
+name: Build and deploy Infra
 
 on:
   push:
