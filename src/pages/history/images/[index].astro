@@ -1,0 +1,80 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { allHistoryPhotos } from '../../../data/historyPhotos';
+
+export function getStaticPaths() {
+  return allHistoryPhotos.map((photo, index) => ({
+    params: { index: String(index + 1) },
+    props: {
+      photo,
+      index,
+      previousHref: index > 0 ? `/history/images/${index}` : undefined,
+      nextHref: index < allHistoryPhotos.length - 1 ? `/history/images/${index + 2}` : undefined
+    }
+  }));
+}
+
+const { photo, index, previousHref, nextHref } = Astro.props;
+const title = photo.year ? `${photo.year} — ${photo.caption}` : photo.caption;
+const captionId = `${photo.id}-caption`;
+---
+
+<BaseLayout title={title}>
+  <a
+    href="#history-image"
+    class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:rounded-md focus:bg-white focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-slate-900 focus:shadow"
+  >
+    Spring naar afbeelding
+  </a>
+
+  <div class="space-y-6">
+    <div class="flex items-center justify-between gap-4">
+      <a href="/history" class="text-sm font-semibold text-slate-700 transition hover:text-slate-900">
+        ← Terug naar de galerij
+      </a>
+      <p class="text-sm text-slate-500">
+        Afbeelding {index + 1} van {allHistoryPhotos.length}
+      </p>
+    </div>
+
+    <div class="flex items-center justify-between gap-4">
+      {previousHref ? (
+        <a
+          href={previousHref}
+          aria-label="Vorige afbeelding"
+          class="inline-flex h-12 w-12 items-center justify-center rounded-full border border-slate-300 bg-white text-slate-700 shadow-sm transition hover:border-slate-400 hover:text-slate-900"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-6 w-6 fill-none stroke-current stroke-2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 18l-6-6 6-6" />
+          </svg>
+        </a>
+      ) : <div class="h-12 w-12" aria-hidden="true"></div>}
+
+      <figure
+        id="history-image"
+        tabindex="-1"
+        aria-labelledby={captionId}
+        class="min-w-0 flex-1 overflow-hidden rounded-xl border border-slate-200 bg-white p-4 shadow-sm"
+      >
+        <img src={photo.src} alt={photo.caption} class="mx-auto max-h-[80vh] max-w-full object-contain" />
+        <figcaption id={captionId} class="mt-4 text-center text-sm text-slate-600">
+          {photo.year ? <span class="font-semibold text-slate-900">{photo.year}</span> : null}
+          {photo.year ? ' — ' : null}
+          {photo.caption}
+        </figcaption>
+      </figure>
+
+      {nextHref ? (
+        <a
+          href={nextHref}
+          aria-label="Volgende afbeelding"
+          class="inline-flex h-12 w-12 items-center justify-center rounded-full border border-slate-300 bg-white text-slate-700 shadow-sm transition hover:border-slate-400 hover:text-slate-900"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-6 w-6 fill-none stroke-current stroke-2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 6l6 6-6 6" />
+          </svg>
+        </a>
+      ) : <div class="h-12 w-12" aria-hidden="true"></div>}
+    </div>
+  </div>
+</BaseLayout>
