@@ -8,6 +8,11 @@ const photos = [
   { src: '/images/history/Heren_OuwZakkenMatch_2019.jpg', caption: 'Ouw Zakken Match', year: 2019 },
   { src: '/images/history/Heren_OuwZakkenMatch_2019_2.jpg', caption:'Ouw Zakken Match', year: 2019 }
 ];
+
+const fuifPhotos = Array.from({ length: 43 }, (_, index) => ({
+  src: `/images/history/fuif/photo${String(index + 1).padStart(2, '0')}.jpg`,
+  caption: 'Spora fuif - Zaal Pacem'
+}));
 ---
 
 <BaseLayout title="De oude doos">
@@ -26,4 +31,18 @@ const photos = [
       </figure>
     ))}
   </div>
+
+  <section class="mt-12">
+    <h2 class="text-2xl font-bold text-slate-900">Spora fuif - Zaal Pacem</h2>
+    <div class="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {fuifPhotos.map((photo) => (
+        <figure class="overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm">
+          <a href={photo.src} target="_blank" rel="noopener noreferrer">
+            <img src={photo.src} alt={photo.caption} class="h-48 w-full object-cover" />
+          </a>
+          <figcaption class="px-4 py-3 text-sm text-slate-600">{photo.caption}</figcaption>
+        </figure>
+      ))}
+    </div>
+  </section>
 </BaseLayout>
