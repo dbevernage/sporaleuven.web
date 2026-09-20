@@ -1,1 +1,1 @@
-- [Technical setup](Home)
+- [Home](Home)
