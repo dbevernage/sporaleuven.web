@@ -16,6 +16,7 @@ export function getStaticPaths() {
 
 const { photo, index, previousHref, nextHref } = Astro.props;
 const title = photo.year ? `${photo.year} — ${photo.caption}` : photo.caption;
+const captionId = `${photo.id}-caption`;
 ---
 
 <BaseLayout title={title}>
@@ -49,9 +50,14 @@ const title = photo.year ? `${photo.year} — ${photo.caption}` : photo.caption;
         </a>
       ) : <div class="h-12 w-12" aria-hidden="true"></div>}
 
-      <figure id="history-image" tabIndex="-1" class="min-w-0 flex-1 overflow-hidden rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+      <figure
+        id="history-image"
+        tabindex="-1"
+        aria-labelledby={captionId}
+        class="min-w-0 flex-1 overflow-hidden rounded-xl border border-slate-200 bg-white p-4 shadow-sm"
+      >
         <img src={photo.src} alt={photo.caption} class="mx-auto max-h-[80vh] max-w-full object-contain" />
-        <figcaption class="mt-4 text-center text-sm text-slate-600">
+        <figcaption id={captionId} class="mt-4 text-center text-sm text-slate-600">
           {photo.year ? <span class="font-semibold text-slate-900">{photo.year}</span> : null}
           {photo.year ? ' — ' : null}
           {photo.caption}
