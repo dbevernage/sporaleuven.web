@@ -1,18 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-
-const photos = [
-  { src: '/images/history/Heren_1_2002_2003.jpg', caption: 'Heren 1', year: 2002 },
-  { src: '/images/history/Heren_1_bekerwinst.jpg', caption: 'Bekerwinst - vorige eeuw', year: 1996 },
-  { src: '/images/history/Heren_1_bekerwinst_2.jpg', caption: 'Bekerwinst - vorige eeuw', year: 1996 },
-  { src: '/images/history/Heren_OuwZakkenMatch_2019.JPG', caption: 'Ouw Zakken Match', year: 2019 },
-  { src: '/images/history/Heren_OuwZakkenMatch_2019_2.JPG', caption:'Ouw Zakken Match', year: 2019 }
-];
-
-const fuifPhotos = Array.from({ length: 43 }, (_, index) => ({
-  src: `/images/history/Fuif/photo${String(index + 1).padStart(2, '0')}.jpg`,
-  caption: 'Spora fuif - Zaal Pacem'
-}));
+import { fuifPhotos, photos } from '../data/historyPhotos';
 ---
 
 <BaseLayout title="De oude doos">
@@ -20,9 +8,9 @@ const fuifPhotos = Array.from({ length: 43 }, (_, index) => ({
   <p class="mt-2 text-slate-600">Een blik op onze mooiste momenten door de jaren heen.</p>
 
   <div class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-    {photos.map((photo) => (
+    {photos.map((photo, index) => (
       <figure class="overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm">
-        <a href={photo.src} target="_blank" rel="noopener noreferrer">
+        <a href={`/history/images/${index + 1}`}>
           <img src={photo.src} alt={photo.caption} class="h-48 w-full object-cover" />
         </a>
         <figcaption class="px-4 py-3 text-sm text-slate-600">
@@ -35,9 +23,9 @@ const fuifPhotos = Array.from({ length: 43 }, (_, index) => ({
   <section class="mt-12">
     <h2 class="text-2xl font-bold text-slate-900">Spora fuif 200? - Zaal Pacem</h2>
     <div class="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-      {fuifPhotos.map((photo) => (
+      {fuifPhotos.map((photo, index) => (
         <figure class="overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm">
-          <a href={photo.src} target="_blank" rel="noopener noreferrer">
+          <a href={`/history/images/${photos.length + index + 1}`}>
             <img src={photo.src} alt={photo.caption} class="h-48 w-full object-cover" />
           </a>
           <figcaption class="px-4 py-3 text-sm text-slate-600">{photo.caption}</figcaption>
