@@ -18,3 +18,13 @@ export const fuifPhotos: HistoryPhoto[] = Array.from({ length: 43 }, (_, index) 
 }));
 
 export const allHistoryPhotos = [...photos, ...fuifPhotos];
+
+export function getHistoryPhotoHref(photo: HistoryPhoto) {
+  const index = allHistoryPhotos.findIndex(({ src }) => src === photo.src);
+
+  if (index === -1) {
+    throw new Error(`Unknown history photo: ${photo.src}`);
+  }
+
+  return `/history/images/${index + 1}`;
+}
