@@ -1,5 +1,9 @@
 # Spora Leuven website
 
+## Technical documentation
+
+GitHub Wiki-style technical documentation is available in [`/wiki/Home.md`](wiki/Home.md).
+
 ## Commands
 
 All commands are run from the repository root:
@@ -17,7 +21,7 @@ This site uses a centralized [Umami](https://umami.is/) script include in `/src/
 
 The public Umami configuration is centralized in `/src/consts.ts`, which reads:
 
-- `PUBLIC_UMAMI_WEBSITE_ID` (required): the Umami website identifier for the `sporaleuven.be` property
+- `UMAMI_WEBSITE_ID`: the configured Umami website identifier
 - `PUBLIC_UMAMI_SCRIPT_URL` (optional): overrides the default script URL of `https://cloud.umami.is/script.js`
 
-The deploy workflow forwards these values into the Astro build. When `PUBLIC_UMAMI_WEBSITE_ID` is not configured, the tracking script is omitted entirely.
+The deploy workflow forwards Umami-related values into the Astro build. The current site code consumes the optional script URL override and keeps the website identifier in source control.
