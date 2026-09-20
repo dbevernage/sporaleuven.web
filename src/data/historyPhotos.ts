@@ -18,13 +18,16 @@ export const fuifPhotos: HistoryPhoto[] = Array.from({ length: 43 }, (_, index) 
 }));
 
 export const allHistoryPhotos = [...photos, ...fuifPhotos];
+const historyPhotoHrefBySrc = new Map(
+  allHistoryPhotos.map((photo, index) => [photo.src, `/history/images/${index + 1}`])
+);
 
 export function getHistoryPhotoHref(photo: HistoryPhoto) {
-  const index = allHistoryPhotos.findIndex(({ src }) => src === photo.src);
+  const href = historyPhotoHrefBySrc.get(photo.src);
 
-  if (index === -1) {
+  if (!href) {
     throw new Error(`Unknown history photo: ${photo.src}`);
   }
 
-  return `/history/images/${index + 1}`;
+  return href;
 }
