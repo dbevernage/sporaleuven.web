@@ -15,7 +15,7 @@ All commands are run from the repository root:
 
 This site uses a centralized [Umami](https://umami.is/) script include in `/src/components/Analytics.astro`, which is mounted once from `/src/layouts/BaseLayout.astro` so every page is tracked consistently.
 
-Production tracking is enabled by setting:
+The public Umami configuration is centralized in `/src/consts.ts`, which reads:
 
 - `PUBLIC_UMAMI_WEBSITE_ID` (required): the Umami website identifier for the `sporaleuven.be` property
 - `PUBLIC_UMAMI_SCRIPT_URL` (optional): overrides the default script URL of `https://cloud.umami.is/script.js`
