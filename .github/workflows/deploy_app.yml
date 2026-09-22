@@ -1,11 +1,7 @@
 name: Build and deploy App
 
+# Disabled: automatic push trigger removed, run manually via workflow_dispatch if needed
 on:
-  push:
-    branches:
-      - master
-    paths-ignore:
-      - 'iac/**'
   workflow_dispatch:
 
 permissions:
