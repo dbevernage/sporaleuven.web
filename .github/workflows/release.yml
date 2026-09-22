@@ -17,6 +17,8 @@ permissions:
 jobs:
   release:
     runs-on: ubuntu-latest
+    outputs:
+      release_tag: ${{ env.RELEASE_TAG }}
     env:
       RELEASE_TAG: ${{ github.event_name == 'workflow_dispatch' && inputs.tag || github.ref_name }}
       RELEASE_ASSET: spora-leuven-site.zip
@@ -53,3 +55,13 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: gh release create "${RELEASE_TAG}" "${RELEASE_ASSET}" --generate-notes --verify-tag
+
+  deploy:
+    needs: release
+    uses: ./.github/workflows/deploy_release.yml
+    with:
+      tag: ${{ needs.release.outputs.release_tag }}
+    secrets: inherit
+    permissions:
+      id-token: write
+      contents: read
