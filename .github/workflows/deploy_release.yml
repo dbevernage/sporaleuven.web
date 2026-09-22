@@ -12,17 +12,20 @@ permissions:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    env:
+      RELEASE_TAG: ${{ github.event.release.tag_name }}
+      RELEASE_ASSET: spora-leuven-site.zip
     steps:
+      - name: Verify GitHub CLI
+        run: gh --version
+
       - name: Download release artifact
         env:
           GH_TOKEN: ${{ github.token }}
-          RELEASE_TAG: ${{ github.event.release.tag_name }}
-        run: gh release download "${RELEASE_TAG}" --pattern "spora-leuven-${RELEASE_TAG}.zip"
+        run: gh release download "${RELEASE_TAG}" --pattern "${RELEASE_ASSET}"
 
       - name: Extract release artifact
-        env:
-          RELEASE_TAG: ${{ github.event.release.tag_name }}
-        run: unzip -o "spora-leuven-${RELEASE_TAG}.zip"
+        run: unzip -o "${RELEASE_ASSET}"
 
       - name: Login to Azure
         uses: azure/login@v2
