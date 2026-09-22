@@ -29,7 +29,7 @@ jobs:
       - name: Download release artifact
         env:
           GH_TOKEN: ${{ github.token }}
-        run: gh release download "${RELEASE_TAG}" --pattern "${RELEASE_ASSET}"
+        run: gh release download "${RELEASE_TAG}" --repo "${GITHUB_REPOSITORY}" --pattern "${RELEASE_ASSET}"
 
       - name: Extract release artifact
         run: |
