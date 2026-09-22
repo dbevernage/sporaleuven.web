@@ -1,5 +1,5 @@
 ---
-import { CONTACT_EMAIL } from '../consts';
+import { CONTACT_EMAIL, RELEASE_VERSION } from '../consts';
 
 const year = new Date().getFullYear();
 ---
@@ -10,6 +10,7 @@ const year = new Date().getFullYear();
     <p>
       Contact: <a href={`mailto:${CONTACT_EMAIL}`} class="text-orange-600 hover:underline">{CONTACT_EMAIL}</a>
     </p>
+    {RELEASE_VERSION && <p class="mt-2 text-slate-400">Versie {RELEASE_VERSION}</p>}
     <p class="mt-2 text-slate-400">&copy; {year} Spora Leuven</p>
   </div>
 </footer>
