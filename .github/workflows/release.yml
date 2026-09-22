@@ -41,7 +41,7 @@ jobs:
         run: npm run build
 
       - name: Package build artifact
-        run: zip -r "${RELEASE_ASSET}" dist
+        run: (cd dist && zip -r "../${RELEASE_ASSET}" .)
 
       - name: Upload build artifact
         uses: actions/upload-artifact@v4
