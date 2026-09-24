@@ -17,9 +17,9 @@ permissions:
 
 jobs:
   deploy:
+    environment: production
     runs-on: ubuntu-latest
     env:
-      ENVIRONMENT: production
       # release event has no `inputs`, so fall back to the release tag
       RELEASE_TAG: ${{ inputs.tag || github.event.release.tag_name }}
       RELEASE_ASSET: spora-leuven-site.zip
