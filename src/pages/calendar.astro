@@ -4,6 +4,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 const teams = (await getCollection('teams')).sort((a, b) => a.data.category.localeCompare(b.data.category));
 const games = (await getCollection('games')).sort((a, b) => a.data.date.valueOf() - b.data.date.valueOf());
+const selectedTeamId = teams.some((team) => team.id === Astro.url.searchParams.get('team')) ? Astro.url.searchParams.get('team') : teams[0]?.id;
 
 const rows = await Promise.all(
   games.map(async (game) => {
@@ -28,13 +29,13 @@ const formatDatum = (date: Date) =>
   <h1 class="text-3xl font-bold text-slate-900">Wedstrijdkalender</h1>
 
   <div class="mt-6 flex flex-wrap gap-2 border-b border-slate-200">
-    {teams.map((team, i) => (
+    {teams.map((team) => (
       <button
         type="button"
         data-tab-target={team.id}
         class:list={[
           'tab-button cursor-pointer border-b-2 px-4 py-2 text-sm font-medium transition-colors',
-          i === 0 ? 'border-orange-600 text-orange-600' : 'border-transparent text-slate-600 hover:text-orange-600',
+          team.id === selectedTeamId ? 'border-orange-600 text-orange-600' : 'border-transparent text-slate-600 hover:text-orange-600',
         ]}
       >
         {team.data.name}
@@ -42,8 +43,8 @@ const formatDatum = (date: Date) =>
     ))}
   </div>
 
-  {teams.map((team, i) => (
-    <div data-tab-panel={team.id} class:list={['mt-4 overflow-x-auto rounded-lg border border-slate-200 bg-white shadow-sm', { hidden: i !== 0 }]}>
+  {teams.map((team) => (
+    <div data-tab-panel={team.id} class:list={['mt-4 overflow-x-auto rounded-lg border border-slate-200 bg-white shadow-sm', { hidden: team.id !== selectedTeamId }]}>
       <table class="w-full text-left text-sm">
         <thead class="bg-slate-100 text-xs uppercase text-slate-500">
           <tr>
@@ -76,19 +77,36 @@ const formatDatum = (date: Date) =>
 
 <script>
   const buttons = document.querySelectorAll<HTMLButtonElement>('.tab-button');
+  const panels = document.querySelectorAll<HTMLElement>('[data-tab-panel]');
+  const activateTab = (target: string, updateUrl = false) => {
+    const activeButton = Array.from(buttons).find((button) => button.dataset.tabTarget === target);
+    if (!activeButton) return;
+
+    buttons.forEach((button) => {
+      const isActive = button === activeButton;
+      button.classList.toggle('border-orange-600', isActive);
+      button.classList.toggle('text-orange-600', isActive);
+      button.classList.toggle('border-transparent', !isActive);
+      button.classList.toggle('text-slate-600', !isActive);
+    });
+    panels.forEach((panel) => {
+      panel.classList.toggle('hidden', panel.dataset.tabPanel !== target);
+    });
+
+    if (updateUrl) {
+      const url = new URL(window.location.href);
+      url.searchParams.set('team', target);
+      window.history.replaceState({}, '', url);
+    }
+  };
+
+  const initialTarget = new URL(window.location.href).searchParams.get('team');
+  if (initialTarget) activateTab(initialTarget);
+
   buttons.forEach((button) => {
     button.addEventListener('click', () => {
       const target = button.dataset.tabTarget;
-      buttons.forEach((b) => {
-        b.classList.toggle('border-orange-600', b === button);
-        b.classList.toggle('text-orange-600', b === button);
-        b.classList.toggle('border-transparent', b !== button);
-        b.classList.toggle('text-slate-600', b !== button);
-      });
-      document.querySelectorAll<HTMLElement>('[data-tab-panel]').forEach((panel) => {
-        panel.classList.toggle('hidden', panel.dataset.tabPanel !== target);
-      });
+      if (target) activateTab(target, true);
     });
   });
 </script>
-
