@@ -19,6 +19,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     env:
+      ENVIRONMENT: production
       # release event has no `inputs`, so fall back to the release tag
       RELEASE_TAG: ${{ inputs.tag || github.event.release.tag_name }}
       RELEASE_ASSET: spora-leuven-site.zip
@@ -39,17 +40,16 @@ jobs:
       - name: Login to Azure
         uses: azure/login@v2
         with:
-          auth-type: IDENTITY
           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
           client-id: ${{ secrets.AZURE_CLIENT_ID }}
-          environment: azurecloud
 
       - name: Deploy to Azure Static Web App
         uses: Azure/static-web-apps-deploy@v1
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
           action: "upload"
+          # environment: ${{ env.ENVIRONMENT }}
           ###### Repository/Build Configurations - These values can be configured to match your app requirements. ######
           # For more information regarding Static Web App workflow configurations, please visit: https://aka.ms/swaworkflowconfig
           app_location: "site" # App source code path
