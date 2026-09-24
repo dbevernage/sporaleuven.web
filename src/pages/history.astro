@@ -10,8 +10,8 @@ import { fuifPhotos, getHistoryPhotoHref, photos } from '../data/historyPhotos';
   <div class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
     {photos.map((photo) => (
       <figure class="overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm">
-        <a href={getHistoryPhotoHref(photo)} class="block aspect-[4/3]">
-          <img src={photo.thumbnailSrc} alt={photo.caption} width={photo.thumbnailWidth} height={photo.thumbnailHeight} loading="lazy" class="h-full w-full object-cover" />
+        <a href={getHistoryPhotoHref(photo)}>
+          <img src={photo.thumbnailSrc} alt={photo.caption} width={photo.thumbnailWidth} height={photo.thumbnailHeight} loading="lazy" class="h-48 w-full object-cover" />
         </a>
         <figcaption class="px-4 py-3 text-sm text-slate-600">
           <span class="font-semibold text-slate-900">{photo.year}</span> — {photo.caption}
@@ -25,8 +25,8 @@ import { fuifPhotos, getHistoryPhotoHref, photos } from '../data/historyPhotos';
     <div class="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
       {fuifPhotos.map((photo) => (
         <figure class="overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm">
-          <a href={getHistoryPhotoHref(photo)} class="block aspect-[4/3]">
-            <img src={photo.thumbnailSrc} alt={photo.caption} width={photo.thumbnailWidth} height={photo.thumbnailHeight} loading="lazy" class="h-full w-full object-cover" />
+          <a href={getHistoryPhotoHref(photo)}>
+            <img src={photo.thumbnailSrc} alt={photo.caption} width={photo.thumbnailWidth} height={photo.thumbnailHeight} loading="lazy" class="h-48 w-full object-cover" />
           </a>
           <figcaption class="px-4 py-3 text-sm text-slate-600">{photo.caption}</figcaption>
         </figure>
